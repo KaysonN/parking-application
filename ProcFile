@@ -1,0 +1,1 @@
+web: gunicord parking.wsgi --log-file -
