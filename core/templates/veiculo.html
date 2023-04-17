@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block body %}
+<title>Veiculo {{placa|upper}}</title>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          {% if veiculos %}
+          <h5 class="card-title">Placa: {{placa|upper}}</h5>
+          {% for veiculo in veiculos %}
+          <p class="card-text">
+            <b>Categoria:</b> {{veiculo.categoria}}
+          </p>
+          <p class="card-text">
+            <b>Modelo:</b> {{veiculo.modelo}}
+          </p>
+          <p class="card-text">
+            <b>Cor:</b> {{veiculo.cor}}
+          </p>
+          <p class="card-text">
+            <b>Entrada:</b> {{veiculo.data_entrada}}
+          </p>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

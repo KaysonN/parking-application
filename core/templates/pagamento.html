@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block body %}
+<title>Veiculo {{placa|upper}}</title>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card text-center">
+        <div class="card-body">
+          {% if veiculos %}
+          <h5 class="card-title">Pagamento do Veículo</h5>
+          {% for veiculo in veiculos %}
+          {% load static pagamento %}
+          <p class="card-text">
+            <b>Placa:</b> {{placa}}
+          </p>
+          <p class="card-text">
+            <b>Valor Total: </b> {{veiculo.valor_estacionamento}}
+          </p>
+
+          <a href="{% url 'core:remover' veiculo.placa %}" class="btn btn-outline-primary">
+            Pagar
+          </a>
+          <a href="{% url 'core:index' %}" class="btn btn-primary">
+            Cancelar
+          </a>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

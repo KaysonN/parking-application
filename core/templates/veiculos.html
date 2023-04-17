@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<!--botão para adicionar um novo veiculo-->
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div>
+      <div class="text-center">
+        <div>
+          <a href="{% url 'core:entrada' %}" class="btn btn-primary">
+            Registrar Veículo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<title>Veículos</title>
+
+{% if veiculos %}
+
+<div class="container mt-2">
+  {% load static horario %}
+  <ul class="navbar-nav float-right">
+    <li class="nav-item">
+      <a class="nav-link hour" id="hora-atual">{% horario %}</a>
+    </li>
+  </ul>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Placa</th>
+        <th>Data de entrada</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for veiculo in veiculos %}
+      <tr>
+        <td>{{ veiculo.categoria }}</td>
+        <td>{{ veiculo.placa|upper }}</td>
+        <td>{{ veiculo.data_entrada }}</td>
+        <td>
+          <a href="{% url 'core:veiculo' veiculo.placa %}" class="btn btn-outline-primary">
+            Informações
+          </a>
+          <a href="{% url 'core:pagar' veiculo.placa %}" class="btn btn-primary">
+            Checkout
+          </a>
+        </td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% else %}
+<div class="container mt-2">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Veículo</th>
+        <th>Data de Entrada</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="3" class="text-center">
+          <i>Estacionamento vazio.</i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}
