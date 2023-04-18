@@ -5,7 +5,7 @@
 ## 1. Clonar ou baixar o repositório via Download ZIP
 Para clonar via comando bash
 ```
-git clone https://github.com/KaysonN/parking-application.git
+$ git clone https://github.com/KaysonN/parking-application.git
 
 ```
 
