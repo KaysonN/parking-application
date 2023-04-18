@@ -31,5 +31,5 @@ Também, não esquecer de verificar o usuário e a porta de entrada, nota-se que
 
 ## 4. Rodar a aplicação
 ```
-py manage.py runserver
+$ py manage.py runserver
 ```
