@@ -1,10 +1,10 @@
-from .models import Veiculo
+from .models import Vehicle
 from django import forms
 
 
 class InsereVeiculoForm(forms.ModelForm):
     class Meta:
-        model = Veiculo
+        model = Vehicle
         fields = [
             "categoria",
             "modelo",

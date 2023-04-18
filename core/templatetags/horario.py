@@ -5,5 +5,5 @@ register = template.Library()
 
 
 @register.simple_tag
-def horario():
+def horarido():
     return datetime.datetime.now().strftime("%H:%M:%S")

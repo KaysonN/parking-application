@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "widget_tweaks",
+    "bootstrap4",
     "djmoney",
     "parking",
     "core",
@@ -74,7 +75,7 @@ DATABASES = {
     },
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "parking3",
+        "NAME": "parking-db",
         "USER": "postgres",
         "PASSWORD": "Teste123",
         "HOST": "localhost",
@@ -127,3 +128,6 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, "static"),)
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/admin/login/'

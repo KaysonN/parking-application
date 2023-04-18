@@ -1,32 +1,30 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<!--botão para adicionar um novo veiculo-->
-<div class="container mt-3">
-  <div class="row justify-content-center">
-    <div>
-      <div class="text-center">
-        <div>
-          <a href="{% url 'core:entrada' %}" class="btn btn-primary">
-            Registrar Veículo
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <title>Veículos</title>
+
+<div class="container mt-4">
+  <form class="form-inline">
+    <div class="input-group-append ml-4">
+      <a href="{% url 'core:entrada' %}" class="btn btn-primary">
+        Registrar Veículo
+      </a>
+    </div>
+    <div class="input-group ml-auto"> <!-- adicionando a classe ml-auto aqui -->
+      <input class="form-control" type="text" placeholder="Placa" id="placa-search">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button" id="search-button">Buscar</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
 
 {% if veiculos %}
 
 <div class="container mt-2">
-  {% load static horario %}
-  <ul class="navbar-nav float-right">
-    <li class="nav-item">
-      <a class="nav-link hour" id="hora-atual">{% horario %}</a>
-    </li>
-  </ul>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -77,4 +75,23 @@
   </table>
 </div>
 {% endif %}
+
+<!-- Incluindo jQuery e código JavaScript -->
+{% block js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#search-button').click(function () {
+      var placa = $('#placa-search').val().toUpperCase();
+      $('tbody tr').hide();
+      $('tbody tr').each(function () {
+        var placaVeiculo = $(this).find('td:eq(1)').text().toUpperCase();
+        if (placaVeiculo.startsWith(placa)) {
+          $(this).show();
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}
 {% endblock %}

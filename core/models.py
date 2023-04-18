@@ -1,8 +1,7 @@
-from djmoney.models.fields import MoneyField
 from django.db import models
 
 
-class Veiculo(models.Model):
+class Vehicle(models.Model):
     CATEGORIAS = [("a", "Moto"), ("b", "Carro"), ("c", "Pesado")]
 
     modelo = models.CharField("modelo", max_length=100, null=False)
@@ -11,7 +10,7 @@ class Veiculo(models.Model):
     ativo = models.BooleanField("ativo", default=True)
     data_entrada = models.DateTimeField(auto_now_add=True)
     categoria = models.CharField(
-        "modelo", max_length=100, null=False, choices=CATEGORIAS
+        "categoria", max_length=100, null=False, choices=CATEGORIAS
     )
     valor_estacionamento = models.DecimalField(
         max_digits=5, decimal_places=2, null=True, blank=True
@@ -27,11 +26,11 @@ class Veiculo(models.Model):
             self.valor_estacionamento = 10
         elif self.categoria == "c":
             self.valor_estacionamento = 20
-        super(Veiculo, self).save(*args, **kwargs)
+        super(Vehicle, self).save(*args, **kwargs)
 
 
-class DataEntrada(models.Model):
-    veiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
+class Entry(models.Model):
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.veiculo.data_entrada)
+        return str(self.vehicle.data_entrada)

@@ -1,14 +1,18 @@
 from core.views import EntradaCreateView, VeiculosListView
+from django.contrib.auth.decorators import login_required
 from django.urls import path
+from django.contrib.auth.views import LoginView
+
 from . import views
 
 app_name = "core"
 
 urlpatterns = [
-    path("", VeiculosListView.as_view(), name="index"),
-    path("veiculos/", VeiculosListView.as_view(), name="veiculos"),
-    path("entrada/", EntradaCreateView.as_view(), name="entrada"),
-    path("<str:placa>/", views.veiculo, name="veiculo"),
-    path("<str:placa>/pagar/", views.pagar, name="pagar"),
-    path("<str:placa>/remover/", views.remover, name="remover"),
+    path("", login_required(VeiculosListView.as_view()), name="index"),
+    path("veiculos/", login_required(VeiculosListView.as_view()), name="veiculos"),
+    path("entrada/", login_required(EntradaCreateView.as_view()), name="entrada"),
+    path("<str:placa>/", login_required(views.veiculo), name="veiculo"),
+    path("<str:placa>/pagar/", login_required(views.pagar), name="pagar"),
+    path("<str:placa>/remover/", login_required(views.remover), name="remover"),
+    path('admin/login/', LoginView.as_view(template_name='admin/login.html'), name='login'),
 ]

@@ -14,7 +14,7 @@
             <b>Placa:</b> {{placa}}
           </p>
           <p class="card-text">
-            <b>Valor Total: </b> {{veiculo.valor_estacionamento}}
+            <b>Valor Total: </b> {% pagamento veiculo.placa %}
           </p>
 
           <a href="{% url 'core:remover' veiculo.placa %}" class="btn btn-outline-primary">
