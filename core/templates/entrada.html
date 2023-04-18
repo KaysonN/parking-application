@@ -17,6 +17,14 @@
                             {% render_field form.categoria class+="form-control" %}
                         </div>
 
+                        <!-- Placa -->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Placa</span>
+                            </div>
+                            {% render_field form.placa class+="form-control" %}
+                        </div>
+
                         <!-- Modelo -->
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -31,14 +39,6 @@
                                 <span class="input-group-text">Cor</span>
                             </div>
                             {% render_field form.cor class+="form-control" %}
-                        </div>
-
-                        <!-- Placa -->
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Placa</span>
-                            </div>
-                            {% render_field form.placa class+="form-control" %}
                         </div>
                         <div class="text-right">
                             <a href="{% url 'core:index' %}" class="btn btn-outline-primary">Voltar</a>

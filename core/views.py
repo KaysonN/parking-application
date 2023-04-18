@@ -4,13 +4,10 @@ from .models import Vehicle
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from .form import InsereVeiculoForm
 
-from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
 
-
+# Cria uma nova entrada de veículo
 class EntradaCreateView(CreateView):
     model = Vehicle
     form_class = InsereVeiculoForm
@@ -18,6 +15,7 @@ class EntradaCreateView(CreateView):
     success_url = reverse_lazy("core:veiculos")
 
 
+# Classe para exibir a lista de veículos
 class VeiculosListView(LoginRequiredMixin, ListView):
     login_url = "login"
     redirect_field_name = "next"
@@ -25,6 +23,7 @@ class VeiculosListView(LoginRequiredMixin, ListView):
     model = Vehicle
     context_object_name = "veiculos"
 
+    # Filtra a queryset de veículos por placa, caso exista
     def get_queryset(self):
         placa_desejada = self.request.GET.get("placa", "")
         queryset = super().get_queryset()
@@ -33,31 +32,31 @@ class VeiculosListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-@login_required(login_url="/admin")
+# Função para exibir a página inicial da aplicação
 def index(request):
     return render(request, "index.html")
 
 
-@login_required(login_url="/admin")
+# Função para exibir a lista de veículos
 def veiculos(request):
     return render(request, "veiculos.html")
 
 
-@login_required(login_url="/admin")
+# Função para exibir informações de um veículo específico
 def veiculo(request, placa):
     veiculos = Vehicle.objects.filter(placa=placa)
     context = {"placa": placa, "veiculos": veiculos}
     return render(request, "veiculo.html", context=context)
 
 
-@login_required(login_url="/admin")
+# Função para exibir a página de pagamento de um veículo
 def pagar(request, placa):
     veiculos = Vehicle.objects.filter(placa=placa)
     context = {"placa": placa, "veiculos": veiculos}
     return render(request, "pagamento.html", context=context)
 
 
-@login_required(login_url="/admin")
+# Função para remover um veículo do sistema
 def remover(request, placa):
     veiculo = get_object_or_404(Vehicle, placa=placa)
     veiculo.delete()

@@ -40,7 +40,3 @@ a>img:hover {
     transform: rotateY(360deg);
   }
 }
-
-.hour {
-  color: black !important;
-}
