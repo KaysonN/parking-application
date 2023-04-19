@@ -1,5 +1,6 @@
 import os.path
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -55,7 +56,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "parking.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-DATABASES = {
+'''DATABASES = {
     "OPTIONS": {
         "charset": "utf8mb4",
         "sql_mode": "STRICT_TRANS_TABLES",
@@ -69,6 +70,10 @@ DATABASES = {
         "HOST": "localhost",
         "PORT": "5433",
     },
+}'''
+
+DATABASES = {
+    'default': dj_database_url.config()
 }
 
 # Password validation
