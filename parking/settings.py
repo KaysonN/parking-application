@@ -1,6 +1,7 @@
 import os.path
 from pathlib import Path
 import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
@@ -55,25 +56,26 @@ TEMPLATES = [
 WSGI_APPLICATION = "parking.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+DATABASES = {
+    "OPTIONS": {
+        "charset": "utf8mb4",
+        "sql_mode": "STRICT_TRANS_TABLES",
+        "init_command": "SET default_storage_engine=INNODB,character_set_connection=utf8mb4,collation_connection=utf8mb4_unicode_ci, time_zone=UTC",
+    },
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "parking-db",
+        "USER": "postgres",
+        "PASSWORD": "Teste123",
+        "HOST": "localhost",
+        "PORT": "5433",
+    },
+}
+
 # DATABASES = {
-#     "OPTIONS": {
-#         "charset": "utf8mb4",
-#         "sql_mode": "STRICT_TRANS_TABLES",
-#         "init_command": "SET default_storage_engine=INNODB,character_set_connection=utf8mb4,collation_connection=utf8mb4_unicode_ci, time_zone=UTC",
-#     },
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "parking-db",
-#         "USER": "postgres",
-#         "PASSWORD": "Teste123",
-#         "HOST": "localhost",
-#         "PORT": "5433",
-#     },
+#     'default': dj_database_url.config()
 # }
 
-DATABASES = {
-    'default': dj_database_url.config()
-}
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
@@ -100,9 +102,10 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 
 STATIC_URL = "/static/"
 
-LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/admin/login/'
+LOGOUT_REDIRECT_URL = '/admin/login/'
