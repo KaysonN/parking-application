@@ -14,5 +14,4 @@ urlpatterns = [
     path("<str:placa>/", login_required(views.veiculo), name="veiculo"),
     path("<str:placa>/pagar/", login_required(views.pagar), name="pagar"),
     path("<str:placa>/remover/", login_required(views.remover), name="remover"),
-    path('admin/login/', LoginView.as_view(template_name='admin/login.html'), name='login'),
 ]
