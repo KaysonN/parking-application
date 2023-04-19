@@ -75,11 +75,11 @@ DATABASES = {
     },
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "parking",
-        "USER": "kayson",
+        "NAME": "parking-db",
+        "USER": "postgres",
         "PASSWORD": "Teste123",
         "HOST": "localhost",
-        "PORT": "",
+        "PORT": "5433",
     },
 }
 
@@ -121,7 +121,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 
 STATIC_URL = "/static/"
 
