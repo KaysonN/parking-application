@@ -102,5 +102,5 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 
 STATIC_URL = "/static/"
 
-LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/admin/login/'
+LOGOUT_REDIRECT_URL = '/admin/login/'

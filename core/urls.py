@@ -1,7 +1,9 @@
 from core.views import EntradaCreateView, VeiculosListView
 from django.contrib.auth.decorators import login_required
 from django.urls import path
-from django.contrib.auth.views import LoginView
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LogoutView, LoginView
+
 
 from . import views
 
@@ -14,4 +16,9 @@ urlpatterns = [
     path("<str:placa>/", login_required(views.veiculo), name="veiculo"),
     path("<str:placa>/pagar/", login_required(views.pagar), name="pagar"),
     path("<str:placa>/remover/", login_required(views.remover), name="remover"),
+    path(
+        "/logout/",
+        LogoutView.as_view(next_page="/admin/login/?next=/veiculos/"),
+        name="logout",
+    ),
 ]

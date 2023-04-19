@@ -26,11 +26,14 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'core:index' %}">Home</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'core:logout' %}" method="POST">Sair</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-    
+
     {% block body %}{% endblock %}
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery.min.js' %}"></script>
