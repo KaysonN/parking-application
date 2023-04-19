@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-0k^(agmoe2gex#-0-tgybpy*o(5^dg7h^1^f0kzxmlkux@s8*2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["35.199.91.58", "*"]
 
 # Application definition
 
@@ -75,11 +75,11 @@ DATABASES = {
     },
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "parking-db",
-        "USER": "postgres",
+        "NAME": "parking",
+        "USER": "kayson",
         "PASSWORD": "Teste123",
         "HOST": "localhost",
-        "PORT": "5433",
+        "PORT": "",
     },
 }
 
@@ -121,7 +121,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = "/static/"
 
