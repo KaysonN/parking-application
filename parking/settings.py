@@ -1,7 +1,5 @@
 import os.path
 from pathlib import Path
-import dj_database_url
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
@@ -9,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-0k^(agmoe2gex#-0-tgybpy*o(5^dg7h^1^f0kzxmlkux@s8*2"
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -56,7 +54,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "parking.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-'''DATABASES = {
+DATABASES = {
     "OPTIONS": {
         "charset": "utf8mb4",
         "sql_mode": "STRICT_TRANS_TABLES",
@@ -70,10 +68,6 @@ WSGI_APPLICATION = "parking.wsgi.application"
         "HOST": "localhost",
         "PORT": "5433",
     },
-}'''
-
-DATABASES = {
-    'default': dj_database_url.config()
 }
 
 # Password validation
@@ -107,5 +101,5 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 
 STATIC_URL = "/static/"
 
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/admin/login/'
-LOGOUT_REDIRECT_URL = '/admin/login/'
