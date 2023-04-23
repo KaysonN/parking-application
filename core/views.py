@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .form import InsereVeiculoForm
+from django.contrib.auth.views import LoginView
 
 
 # Cria uma nova entrada de veículo
@@ -30,6 +31,13 @@ class VeiculosListView(LoginRequiredMixin, ListView):
         if placa_desejada:
             queryset = queryset.filter(placa=placa_desejada)
         return queryset
+
+
+class MyLoginView(LoginView):
+    # redirect_authenticated_user = True  # opcional, redireciona usuários autenticados
+
+    def get_success_url(self):
+        return "/veiculos/"
 
 
 # Função para exibir a página inicial da aplicação
