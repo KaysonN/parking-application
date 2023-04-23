@@ -33,13 +33,6 @@ class VeiculosListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class MyLoginView(LoginView):
-    # redirect_authenticated_user = True  # opcional, redireciona usuários autenticados
-
-    def get_success_url(self):
-        return "/veiculos/"
-
-
 # Função para exibir a página inicial da aplicação
 def index(request):
     return render(request, "index.html")
