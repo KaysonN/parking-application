@@ -1,5 +1,6 @@
 import os.path
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-0k^(agmoe2gex#-0-tgybpy*o(5^dg7h^1^f0kzxmlkux@s8*2"
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -55,7 +56,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "parking.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-DATABASES = {
+'''DATABASES = {
     "OPTIONS": {
         "charset": "utf8mb4",
         "sql_mode": "STRICT_TRANS_TABLES",
@@ -69,6 +70,10 @@ DATABASES = {
         "HOST": "localhost",
         "PORT": "5433",
     },
+}'''
+
+DATABASES = {
+    'default': dj_database_url.config()
 }
 
 # DATABASES = {
@@ -102,9 +107,9 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
 
+STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 
-STATIC_URL = "/static/"
 
 LOGIN_URL = '/admin/login/'
 LOGOUT_REDIRECT_URL = '/admin/login/'
