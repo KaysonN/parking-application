@@ -25,9 +25,9 @@ $ py manage.py migrate
 ```
 
 # Importante:
-Certifique-se foi criado um banco de dados PostgreSQL com o nome de ```parking-db```, assim como está definido na settings.py.
+Certifique-se foi criado um banco de dados PostgreSQL com as mesmas configurações definidas na settings.py. 
 
-Também, não esquecer de verificar o usuário e a porta de entrada, nota-se que está definida como 5433
+Não esquecer de verificar qual porta o seu banco de dados está utilizando.
 
 ## 4. Rodar a aplicação
 ```

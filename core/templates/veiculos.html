@@ -12,7 +12,7 @@
       </a>
     </div>
     <div class="input-group ml-auto"> <!-- adicionando a classe ml-auto aqui -->
-      <input class="form-control" type="text" placeholder="Placa" id="placa-search">
+      <input class="form-control" type="text" placeholder="Placa" id="placa-search" onkeypress="return event.keyCode != 13;">
       <div class="input-group-append">
         <button class="btn btn-primary" type="button" id="search-button">Buscar</button>
       </div>

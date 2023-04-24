@@ -5,7 +5,6 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .form import InsereVeiculoForm
-from django.contrib.auth.views import LoginView
 
 
 # Cria uma nova entrada de veículo
@@ -24,23 +23,10 @@ class VeiculosListView(LoginRequiredMixin, ListView):
     model = Vehicle
     context_object_name = "veiculos"
 
-    # Filtra a queryset de veículos por placa, caso exista
-    def get_queryset(self):
-        placa_desejada = self.request.GET.get("placa", "")
-        queryset = super().get_queryset()
-        if placa_desejada:
-            queryset = queryset.filter(placa=placa_desejada)
-        return queryset
-
 
 # Função para exibir a página inicial da aplicação
 def index(request):
     return render(request, "index.html")
-
-
-# Função para exibir a lista de veículos
-def veiculos(request):
-    return render(request, "veiculos.html")
 
 
 # Função para exibir informações de um veículo específico
